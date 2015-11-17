@@ -4,78 +4,42 @@
 
     imdbSearch();
     googleBooksSearch();
-    twitterUrlCount();
     itunes();
 
   })
 })();
 
 function imdbSearch(){
-
-  var userInput, searchUrl,results;
-  var outputArea = $("div#omdb .results");
-
   $('#imdbButton').on("click", function(){
-     userInput = $('#imdbInput').val();
-     searchUrl = "http://www.omdbapi.com/?s=" + userInput
-     
-     //Clear the output field
-     outputArea.html('');
-
-     $.get(searchUrl, function( data ) {
-       results = data.Search;
-       results.forEach(function(item){
-         outputArea.append("<p>" + item.Title + "</p>")
-       })
-     });
-
-  })
-}
-
-
-function googleBooksTest(){
-
-  var userInput, searchUrl, results;
-  var outputArea = $("div#googlebooks .results");
-
-  $('#googlebooksButton').on("click", function(){
-     userInput = $('#googlebooksInput').val();
-     searchUrl = "https://www.googleapis.com/books/v1/volumes?q=intitle:" + userInput
-
-     //clear the output field
-     outputArea.html('');
-
-     $.get(searchUrl, function( data ) {
-       results = data.items;
-       results.forEach(function(item){
-         outputArea.append("<li>" + item.volumeInfo.title + "<br> Pages:" + item.volumeInfo.pageCount + "</li>")
-       })
-     });
-
-  })
-}
-
-function twitterUrlCount(){
-
-  var userInput, searchUrl, results;
-  var outputArea = $("div#twitterurlcount .results");
-
-  $('#twitterurlcountButton').on("click", function(){
-     userInput = $('#twitterurlcountInput').val();
-     searchUrl = "http://urls.api.twitter.com/1/urls/count.json?url=" + userInput
-
-     //clear the output field
-     outputArea.html('');
-
-      $.ajax({
-          type: "GET",
-          dataType:"jsonp",
-          url: searchUrl
-      }).done(function (data) {
-          outputArea.append("<li>" + data.url + "(Count:" + data.count + ")</li>")
+     $.ajax({
+        url: "http://www.omdbapi.com/?s=3",
+        success: function( data ) {
+          console.log('success');
+        },
+        error: function( error ) {
+           console.log('failure');
+         }
       });
+  })
+}
+
+
+function googleBooksSearch(){
+  $('#googlebooksButton').on("click", function(){
+     // for (var i = 0; i < 1000; i++) {
+       $.ajax({
+          url: "https://www.googleapis.com/books/v1/volumes?q=intitle:The",
+          success: function( data ) {
+            console.log('success');
+          },
+          error: function( error ) {
+             console.log('failure');
+          }
+        });
+      // }
   });
 }
+
 
 function itunes(){
 
