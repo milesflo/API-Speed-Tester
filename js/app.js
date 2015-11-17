@@ -42,26 +42,17 @@ function googleBooksSearch(){
 
 
 function itunes(){
-
-  var userInput, searchUrl, results;
-  var outputArea = $("div#itunes .results");
-
-  $('#itunesButton').on("click", function(){
-     userInput = $('#itunesInput').val();
-     searchUrl = "https://itunes.apple.com/search?term=" + userInput
-
-     //clear the output field
-     outputArea.html('');
-
-      $.ajax({
-          type: "GET",
-          dataType:"jsonp",
-          url: searchUrl
-      }).done(function (data) {
-          results = data.results;
-          results.forEach(function(item){
-            outputArea.append("<li>" + item.artistName + " - " + item.trackName + " <a href='" + item.previewUrl + "'>Preview Song</a></li>")
-          })
-      });
+$('#itunesButton').on("click", function(){
+    $.ajax({
+      dataType: "jsonp",
+      type: "GET",
+      url: "https://itunes.apple.com/search?term=beatles",
+      success: function( data ) {
+        console.log('success');
+      },
+      error: function( error ) {
+        console.log('failure');
+      }
+    });
   });
 }
