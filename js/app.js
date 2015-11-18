@@ -9,24 +9,38 @@
   })
 })();
 
+function generateCallback(preservedValue, address) {
+    return function(){
+        $.ajax(address);
+        console.log(address); // unchanged
+        console.log(preservedValue);
+    }
+}
+
 //IMDB AJAX. Connected to a button.
 function imdbConnect(){
   $('#imdbButton').on("click", function(){
-     $.ajax(imdb);
+    for (var i = 0; i < 100; i++) {
+      setTimeout(generateCallback(i, imdb), 100 * i);
+    };
   });
 };
 
 //Google books AJAX. Connected to a button
 function googleBooksConnect(){
   $('#googlebooksButton').on("click", function(){
-    $.ajax(googleBooks);
+    for (var i = 0; i < 100; i++) {
+      setTimeout(generateCallback(i, googleBooks), 100 * i);
+    };
   });
 };
 
 //Itunes AJAX. Connected to button
 function itunesConnect(){
   $('#itunesButton').on("click", function(){
-    $.ajax(itunes);
+    for (var i = 0; i < 100; i++) {
+      setTimeout(generateCallback(i, itunes), 100 * i);
+    };
   });
 };
 
