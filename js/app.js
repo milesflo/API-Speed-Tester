@@ -1,58 +1,59 @@
-//Function runs by itself & loads all of the searchs
+//Function runs by itself & loads all of the searches
 (function(){
   $(document).ready(function(){
 
-    imdbSearch();
-    googleBooksSearch();
-    itunes();
+    imdbConnect();
+    googleBooksConnect();
+    itunesConnect();
 
   })
 })();
 
-function imdbSearch(){
+function imdbConnect(){
   $('#imdbButton').on("click", function(){
-     $.ajax({
-        url: "http://www.omdbapi.com/?s=3",
-        success: function( data ) {
-          console.log('success');
-        },
-        error: function( error ) {
-           console.log('failure');
-         }
-      });
-  })
-}
+     $.ajax(imdb);
+  });
+};
 
 
-function googleBooksSearch(){
+function googleBooksConnect(){
   $('#googlebooksButton').on("click", function(){
+     /* Uncomment for-loop to flood the server until refusal of service */
      // for (var i = 0; i < 1000; i++) {
-       $.ajax({
-          url: "https://www.googleapis.com/books/v1/volumes?q=intitle:The",
-          success: function( data ) {
-            console.log('success');
-          },
-          error: function( error ) {
-             console.log('failure');
-          }
-        });
+       $.ajax(googleBooks);
       // }
   });
-}
+};
 
 
-function itunes(){
+function itunesConnect(){
 $('#itunesButton').on("click", function(){
-    $.ajax({
-      dataType: "jsonp",
-      type: "GET",
-      url: "https://itunes.apple.com/search?term=beatles",
-      success: function( data ) {
-        console.log('success');
-      },
-      error: function( error ) {
-        console.log('failure');
-      }
-    });
+    $.ajax(itunes);
   });
-}
+};
+
+
+var API = function(name, type, url) {
+  this.name = name;
+  this.dataType = "jsonp";
+  this.type = type;
+  this.url = url;
+  this.successfulHits = 0;
+  this.failedHits = 0;
+  this.success = function(data) {
+    console.log('success!');
+    this.successfulHits += 1;
+  };
+  this.error = function(error) {
+    console.log('failure!');
+    this.failedHits++;
+  };
+};
+
+
+var itunes = new API('itunes', 'GET', 'https://itunes.apple.com/search?term=beatles');
+var googleBooks = new API('google books', 'GET', 'https://www.googleapis.com/books/v1/volumes?q=intitle:The');
+var imdb = new API('imdb', 'GET', 'http://www.omdbapi.com/?s=3');
+
+console.log(itunes);
+
