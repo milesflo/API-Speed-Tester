@@ -56,5 +56,5 @@ var googleBooks = new API('Google Books', 'GET', 'https://www.googleapis.com/boo
 var imdb = new API('iMDB', 'GET', 'http://www.omdbapi.com/?s=3');
 
 //Log iTunes object at page load
-console.log(itunes);
+console.log(itunes); 
 
