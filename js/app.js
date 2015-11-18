@@ -28,6 +28,7 @@ function googleBooksConnect(){
 
 function itunesConnect(){
 $('#itunesButton').on("click", function(){
+  console.log(itunes);
     $.ajax(itunes);
   });
 };
@@ -40,13 +41,14 @@ var API = function(name, type, url) {
   this.url = url;
   this.successfulHits = 0;
   this.failedHits = 0;
+  var closureMe = this;
   this.success = function(data) {
     console.log('success!');
-    this.successfulHits += 1;
+    closureMe.successfulHits++;
   };
   this.error = function(error) {
     console.log('failure!');
-    this.failedHits++;
+    closureMe.failedHits++;
   };
 };
 
