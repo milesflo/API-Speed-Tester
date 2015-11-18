@@ -1,4 +1,4 @@
-//Function runs by itself & loads all of the searches
+//Function runs by itself on page load.
 (function(){
   $(document).ready(function(){
 
@@ -9,31 +9,29 @@
   })
 })();
 
+//IMDB AJAX. Connected to a button.
 function imdbConnect(){
   $('#imdbButton').on("click", function(){
      $.ajax(imdb);
   });
 };
 
-
+//Google books AJAX. Connected to a button
 function googleBooksConnect(){
   $('#googlebooksButton').on("click", function(){
-     /* Uncomment for-loop to flood the server until refusal of service */
-     // for (var i = 0; i < 1000; i++) {
-       $.ajax(googleBooks);
-      // }
+    $.ajax(googleBooks);
   });
 };
 
-
+//Itunes AJAX. Connected to button
 function itunesConnect(){
-$('#itunesButton').on("click", function(){
-  console.log(itunes);
+  $('#itunesButton').on("click", function(){
     $.ajax(itunes);
   });
 };
 
-
+/*Creator class for new API's. includes name for 
+ease, request type, and url (destination)*/
 var API = function(name, type, url) {
   this.name = name;
   this.dataType = "jsonp";
@@ -52,10 +50,11 @@ var API = function(name, type, url) {
   };
 };
 
+//Creation of API's using constructor.
+var itunes = new API('iTunes', 'GET', 'https://itunes.apple.com/search?term=beatles');
+var googleBooks = new API('Google Books', 'GET', 'https://www.googleapis.com/books/v1/volumes?q=intitle:The');
+var imdb = new API('iMDB', 'GET', 'http://www.omdbapi.com/?s=3');
 
-var itunes = new API('itunes', 'GET', 'https://itunes.apple.com/search?term=beatles');
-var googleBooks = new API('google books', 'GET', 'https://www.googleapis.com/books/v1/volumes?q=intitle:The');
-var imdb = new API('imdb', 'GET', 'http://www.omdbapi.com/?s=3');
-
+//Log iTunes object at page load
 console.log(itunes);
 
