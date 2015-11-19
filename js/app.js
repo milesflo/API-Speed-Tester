@@ -9,19 +9,32 @@
   })
 })();
 
-function generateCallback(preservedValue, address) {
+
+function generateCallback(iteration, apiObj) {
     return function(){
-        $.ajax(address);
-        console.log(address); // unchanged
-        console.log(preservedValue);
-    }
+        var callbackTime = new Date().getTime();
+        $.ajax(apiObj.url, {success: function(data) {
+            console.log(callbackTime);
+            apiObj.delayTimesCollection.push(new Date().getTime() - callbackTime);
+            apiObj.successfulHits++;
+          }
+          error: function(error) {
+            console.log('failure!');
+            closureMe.failedHits++;
+          } 
+        });
+
+        //console.log(apiObj); // unchanged
+        //console.log(iteration);
+      }
+    
 }
 
 //IMDB AJAX. Connected to a button.
 function imdbConnect(){
   $('#imdbButton').on("click", function(){
     for (var i = 0; i < 100; i++) {
-      setTimeout(generateCallback(i, imdb), 100 * i);
+      setTimeout(generateCallback(i, imdb), 5 * i);
     };
   });
 };
@@ -30,7 +43,7 @@ function imdbConnect(){
 function googleBooksConnect(){
   $('#googlebooksButton').on("click", function(){
     for (var i = 0; i < 100; i++) {
-      setTimeout(generateCallback(i, googleBooks), 100 * i);
+      setTimeout(generateCallback(i, googleBooks), 5 * i);
     };
   });
 };
@@ -39,7 +52,7 @@ function googleBooksConnect(){
 function itunesConnect(){
   $('#itunesButton').on("click", function(){
     for (var i = 0; i < 100; i++) {
-      setTimeout(generateCallback(i, itunes), 100 * i);
+      setTimeout(generateCallback(i, itunes), 5 * i);
     };
   });
 };
@@ -48,20 +61,14 @@ function itunesConnect(){
 ease, request type, and url (destination)*/
 var API = function(name, type, url) {
   this.name = name;
+  this.ajaxStartTime = {};
   this.dataType = "jsonp";
   this.type = type;
   this.url = url;
   this.successfulHits = 0;
   this.failedHits = 0;
   var closureMe = this;
-  this.success = function(data) {
-    console.log('success!');
-    closureMe.successfulHits++;
-  };
-  this.error = function(error) {
-    console.log('failure!');
-    closureMe.failedHits++;
-  };
+  this.delayTimesCollection = [];
 };
 
 //Creation of API's using constructor.
