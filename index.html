@@ -1,37 +1,51 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>API Speed Tester</title>
+	<head>
+		<meta charset="utf-8">
+		<title>API Speed Tester</title>
+		<html lang="en">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js" charset="utf-8"></script>
+		<script src="js/app.js" charset="utf-8"></script>
+	</head>
+	<body>
+	  <div class="container-fluid">
+		  <h1 style="color:#564874">API LIST</h1>
+			<div class="row" style="color:#666">
+				<ul>
+					<li>iMDB</li>
+					<li>Google Books</li>
+					<li>iTunes</li>
+				</ul>
+			</div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js" charset="utf-8"></script>
-    <script src="js/app.js" charset="utf-8"></script>
-  </head>
-  <body>
+			<div class="row">
+				<h2>iMDB</h2>
+		  		<div class="col-xs-6" id="imdb">
+					<button id="imdbButton">Connect to iMDB</button>
+				</div>
+				<div class="col-xs-6">Results</div>
+			</div>
 
-  <h1>API LIST</h1>
-  <ul>
-    <li>iMDB</li>
-    <li>Google Books</li>
-    <li>iTunes</li>
-  </ul>
+			<hr>
 
-      <div id="imdb">
-        <h2>iMDB</h2>
-          <button id="imdbButton">Connect to iMDB</button>
-        <hr>
-      </div>
+			<div class="row">
+				<h2>Google Books</h2>
+				<div class="col-xs-6">	
+					<button id="googlebooksButton">Connect to Google Books</button>
+				</div>
+				<div class="col-xs-6">Results</div>
+			</div>
 
-      <div id="googlebooks">
-        <h2>Google Books</h2>
-          <button id="googlebooksButton">Connect to Google Books</button>
-        <hr>
-      </div>
+			<hr>
 
-      <div id="itunes">
-        <h2>iTunes</h2>
-          <button id="itunesButton">Connect to iTunes</button>
-        <hr>
-      </div>
-  </body>
+			<div class="row">
+				<h2>iTunes</h2>
+				<div class="col-xs-6">
+					<button id="itunesButton">Connect to iTunes</button>
+				</div>
+				<div class="col-xs-6">Results</div>
+			</div>
+		</div>
+	</body>
 </html>
