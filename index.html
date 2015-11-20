@@ -20,31 +20,85 @@
 			</div>
 
 			<div class="row">
-				<h2>iMDB</h2>
-		  		<div class="col-xs-6" id="imdb">
+				<div class="col-xs-12">
+					<h2>iMDB</h2>
 					<button id="imdbButton">Connect to iMDB</button>
+					<br>
+					<table class="table-bordered" id="imdbData">	
+						<tr>
+							<th>API Name</th>
+							<th>Average response time</th>
+							<th>Successful Connects</th>
+							<th>Failed Connects</th>
+							<th>Success Rate</th>
+							<th>Rate Limiting?</th>
+						</tr>
+						<tr>
+							<td id="imdbName"> Loading... </td>
+							<td id="imdbAvgTime"> Loading... </td>
+							<td id="imdbSuccessCount"> Loading... </td>
+							<td id="imdbFailureCount"> Loading... </td>
+							<td id="imdbSuccessRate"> Loading... </td>
+							<td id="imdbRateLimitBool"> Loading... </td>
+						</tr>
+					</table>
 				</div>
-				<div class="col-xs-6">Results</div>
 			</div>
 
 			<hr>
 
 			<div class="row">
-				<h2>Google Books</h2>
-				<div class="col-xs-6">	
+				<div class="col-xs-12">
+					<h2>Google Books</h2>
 					<button id="googlebooksButton">Connect to Google Books</button>
+					<br>
+					<table class="table-bordered" id="googleBooksData">
+						<tr>
+							<th>API Name</th>
+							<th>Average response time</th>
+							<th>Successful Connects</th>
+							<th>Failed Connects</th>
+							<th>Success Rate</th>
+							<th>Rate Limiting?</th>
+						</tr>
+						<tr>
+							<td id="googleBooksName"> Loading... </td>
+							<td id="googleBooksAvgTime"> Loading... </td>
+							<td id="googleBooksSuccessCount"> Loading... </td>
+							<td id="googleBooksFailureCount"> Loading... </td>
+							<td id="googleBooksSuccessRate"> Loading... </td>
+							<td id="googleBooksRateLimitBool"> Loading... </td>
+						</tr>
+					</table>
 				</div>
-				<div class="col-xs-6">Results</div>
 			</div>
 
 			<hr>
 
 			<div class="row">
-				<h2>iTunes</h2>
-				<div class="col-xs-6">
+				<div class="col-xs-12">
+					<h2>iTunes</h2>
 					<button id="itunesButton">Connect to iTunes</button>
+					<br>
+					<table class="table-bordered" id="itunesData">
+						<tr>
+							<th>API Name</th>
+							<th>Average response time</th>
+							<th>Successful Connects</th>
+							<th>Failed Connects</th>
+							<th>Success Rate</th>
+							<th>Rate Limiting?</th>
+						</tr>
+						<tr>
+							<td id="itunesName"> Loading... </td>
+							<td id="itunesAvgTime"> Loading... </td>
+							<td id="itunesSuccessCount"> Loading... </td>
+							<td id="itunesFailureCount"> Loading... </td>
+							<td id="itunesSuccessRate"> Loading... </td>
+							<td id="itunesRateLimitBool"> Loading... </td>
+						</tr>
+					</table>
 				</div>
-				<div class="col-xs-6">Results</div>
 			</div>
 		</div>
 	</body>
