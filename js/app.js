@@ -7,6 +7,7 @@
 	})
 })();
 
+var burstCount = 150;
 
 function generateCallback(iteration, apiObj) {
 	return function(){
@@ -32,39 +33,35 @@ function generateCallback(iteration, apiObj) {
 
 function logging (apiObj) {
 	if (apiObj.metaname === "imdb") {
-			if (apiObj.averageDelayTime === NaN) {
-				$('#imdbAvgTime').html("None");
-			}  else {
-				$('#imdbAvgTime').html(apiObj.averageDelayTime);
-			}
+			$('#imdbAvgTime').html(apiObj.averageDelayTime + " ms");
 			$('#imdbSuccessCount').html(imdb.successfulHits);
 			$('#imdbFailedCount').html(apiObj.failedHits);
-			$('#imdbSuccessRate').html(((apiObj.successfulHits / 100)*100).toFixed(0) + "%");
+			$('#imdbSuccessRate').html(((apiObj.successfulHits / burstCount)*100).toFixed(0) + "%");
 			// Rate limiting message
-			if (apiObj.failedHits !== 0 && apiObj.failedHits !== 100) {
+			if (apiObj.failedHits !== 0 && apiObj.failedHits !== burstCount) {
 				$('#imdbRateLimitBool').html("Some");
-			}  else if (apiObj.failedHits === 100) {
-				$('#imdbRateLimitBool').html("You've been banned");
+			}  else if (apiObj.failedHits === burstCount) {
+				$('#imdbRateLimitBool').html("You've been blocked.");
+				$('#imdbRateLimitBool').css("color" , "red");
 			} else {
-				$('#imdbRateLimitBool').html("None")
+				$('#imdbRateLimitBool').html("None");
+				$('#imdbRateLimitBool').css("color", "green");
 			}
 
 		}  else if (apiObj.metaname === "googleBooks") {
-			if (apiObj.averageDelayTime === NaN) {
-				$('#googleBooksAvgTime').html("None");
-			}  else {
-				$('#googleBooksAvgTime').html(apiObj.averageDelayTime);
-			}
+			$('#googleBooksAvgTime').html(apiObj.averageDelayTime);
 			$('#googleBooksSuccessCount').html(apiObj.successfulHits);
 			$('#googleBooksFailedCount').html(apiObj.failedHits);
-			$('#googleBooksSuccessRate').html(((apiObj.successfulHits / 100)*100).toFixed(0) + "%");
+			$('#googleBooksSuccessRate').html(((apiObj.successfulHits / burstCount)*100).toFixed(0) + "%");
 			// Rate limiting message
-			if (apiObj.failedHits !== 0 && apiObj.failedHits !== 100) {
+			if (apiObj.failedHits !== 0 && apiObj.failedHits !== burstCount) {
 				$('#googleBooksRateLimitBool').html("Some");
-			}  else if (apiObj.failedHits === 100) {
-				$('#googleBooksRateLimitBool').html("You've been banned");
+			}  else if (apiObj.failedHits === burstCount) {
+				$('#googleBooksRateLimitBool').html("You've been blocked.");
+				$('#googleBooksRateLimitBool').css("color" , "red");
 			} else {
-				$('#googleBooksRateLimitBool').html("None")
+				$('#googleBooksRateLimitBool').html("None");
+				$('#googleBooksRateLimitBool').css("color", "green");
 			}
 		}  else if (apiObj.metaname === "itunes") {
 			if (apiObj.averageDelayTime === NaN) {
@@ -74,14 +71,16 @@ function logging (apiObj) {
 			}
 			$('#itunesSuccessCount').html(apiObj.successfulHits);
 			$('#itunesFailedCount').html(apiObj.failedHits);
-			$('#itunesSuccessRate').html(((apiObj.successfulHits / 100)*100).toFixed(0) + "%");
+			$('#itunesSuccessRate').html(((apiObj.successfulHits / burstCount)*100).toFixed(0) + "%");
 			// Rate limit message
-			if (apiObj.failedHits !== 0 && apiObj.failedHits !== 100) {
+			if (apiObj.failedHits !== 0 && apiObj.failedHits !== burstCount) {
 				$('#itunesRateLimitBool').html("Some");
-			}  else if (apiObj.failedHits === 100) {
-				$('#itunesRateLimitBool').html("You've been banned");
+			}  else if (apiObj.failedHits === burstCount) {
+				$('#itunesRateLimitBool').html("You've been blocked.");
+				$('#itunesRateLimitBool').css("color" , "red");
 			} else {
-				$('#itunesRateLimitBool').html("None")
+				$('#itunesRateLimitBool').html("None");
+				$('#itunesRateLimitBool').css("color", "green");
 			}
 		}
 }
@@ -97,11 +96,11 @@ var calculateAverage = function(apiObj) {
 //IMDB AJAX. Connected to a button.
 function imdbConnect(){
 	$('#imdbButton').on("click", function(){
-		$('#imdbData').css('visibility','visible');
+		$('#imdbData').show();
 		imdb.delayTimesCollection = [];
 		imdb.successfulHits = 0;
 		imdb.failedHits = 0;
-		for (var i = 0; i < 100; i++) {
+		for (var i = 0; i < burstCount; i++) {
 			setTimeout(generateCallback(i, imdb), 5 * i);
 		};
 	});
@@ -110,11 +109,11 @@ function imdbConnect(){
 //Google books AJAX. Connected to a button
 function googleBooksConnect(){
 	$('#googlebooksButton').on("click", function(){
-		$('#googleBooksData').css('visibility','visible');
+		$('#googleBooksData').show();
 		googleBooks.delayTimesCollection = [];
 		googleBooks.successfulHits = 0;
 		googleBooks.failedHits = 0;
-		for (var i = 0; i < 100; i++) {
+		for (var i = 0; i < burstCount; i++) {
 			setTimeout(generateCallback(i, googleBooks), 5 * i);
 		};
 	});
@@ -123,11 +122,11 @@ function googleBooksConnect(){
 //Itunes AJAX. Connected to button
 function itunesConnect(){
 	$('#itunesButton').on("click", function(){
-		$('#itunesData').css('visibility','visible');
+		$('#itunesData').show();
 		itunes.delayTimesCollection = [];
 		itunes.successfulHits = 0;
 		itunes.failedHits = 0;
-		for (var i = 0; i < 100; i++) {
+		for (var i = 0; i < burstCount; i++) {
 			setTimeout(generateCallback(i, itunes), 5 * i);
 		};
 	});
@@ -151,4 +150,4 @@ var API = function(metaname, name, type, url) {
 //Creation of API's using constructor.
 var imdb = new API('imdb', 'iMDB', 'GET', 'http://www.omdbapi.com/?s=3');
 var googleBooks = new API('googleBooks', 'Google Books', 'GET', 'https://www.googleapis.com/books/v1/volumes?q=intitle:The');
-var itunes = new API('itunes', 'iTunes', 'GET', 'https://itunes.apple.com/search?term=division');
+var itunes = new API('itunes', 'iTunes', 'GET', 'https://itunes.apple.com/search?term=interpol');
