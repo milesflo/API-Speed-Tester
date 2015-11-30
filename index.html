@@ -11,19 +11,19 @@
 	</head>
 	<body>
 	  <div class="container-fluid">
-		  <h1 style="color:#564874">API LIST</h1>
+		  <h1 id="title">API SPEED TESTER</h1>
 			<div class="row" style="color:#666">
 				<ul>
-					<li>iMDB</li>
-					<li>Google Books</li>
-					<li>iTunes</li>
+					<li class="imdbLogo">IMDb</li>
+					<li>d<span class="googleBlue">G</span><span class="googleRed">o</span><span class="googleYellow">o</span><span class="googleBlue">g</span><span class="googleGreen">l</span><span class="googleRed">e</span><span class="books"> books</span></li>
+					<li class="itunesLogo">iTunes</li>
 				</ul>
 			</div>
 
 			<div class="row">
 				<div class="col-xs-12">
-					<h2>iMDB</h2>
-					<button id="imdbButton">Connect to iMDB</button>
+					<h2 class="imdbLogo">IMDb</h2>
+					<button id="imdbButton">Connect to <span class="imdbLogo">IMDb</span></button>
 					<br>
 					<table class="table-bordered" id="imdbData">	
 						<tr>
@@ -35,7 +35,7 @@
 							<th>Rate Limiting?</th>
 						</tr>
 						<tr>
-							<td id="imdbName"> iMDB</td>
+							<td id="imdbName"> IMDb</td>
 							<td id="imdbAvgTime"> Loading... </td>
 							<td id="imdbSuccessCount"> Loading... </td>
 							<td id="imdbFailedCount"> Loading... </td>
@@ -50,8 +50,8 @@
 
 			<div class="row">
 				<div class="col-xs-12">
-					<h2>Google Books</h2>
-					<button id="googlebooksButton">Connect to Google Books</button>
+					<h2><span class="googleBlue">G</span><span class="googleRed">o</span><span class="googleYellow">o</span><span class="googleBlue">g</span><span class="googleGreen">l</span><span class="googleRed">e</span><span class="books"> books</span></h2>
+					<button id="googlebooksButton">Connect to <span class="googleBlue">G</span><span class="googleRed">o</span><span class="googleYellow">o</span><span class="googleBlue">g</span><span class="googleGreen">l</span><span class="googleRed">e</span><span class="books"> books</span></button>
 					<br>
 					<table class="table-bordered" id="googleBooksData">
 						<tr>
@@ -78,8 +78,8 @@
 
 			<div class="row">
 				<div class="col-xs-12">
-					<h2>iTunes</h2>
-					<button id="itunesButton">Connect to iTunes</button>
+					<h2 class="itunesLogo">iTunes</h2>
+					<button id="itunesButton">Connect to <span class="itunesLogo">iTunes</span></button>
 					<br>
 					<table class="table-bordered" id="itunesData">
 						<tr>
@@ -101,6 +101,7 @@
 					</table>
 				</div>
 			</div>
+			<br>
 		</div>
 	</body>
 </html>

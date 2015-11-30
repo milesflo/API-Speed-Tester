@@ -1,23 +1,84 @@
-* {
-	font-family: Helvetica;
-	color: #666;
+body{
+	width: 800px;
 }
 
+#title {
+	color:#564874;
+	margin-left : 25px;
+}
 
+ul {
+	font-size: 2rem;
+}
 
+table {
+	position: relative;
+	margin-top: 10px;
+}
+
+th {
+	padding: 5px;
+}
+
+td {
+	padding: 5px;
+}
 
 
 #imdbData {
-	visibility: hidden;
+	display: none;
 	width: 100%;
+	background-color: 
 }
 
 #googleBooksData {
-	visibility: hidden;
+	display: none;
 	width: 100%;
 }
 
 #itunesData {
-	visibility: hidden;
+	display: none;
 	width: 100%;
+}
+
+
+/* :: Various API-specific font stuff :: */
+
+/* IMDb */
+.imdbLogo {
+	color: #f3ce13;
+}
+
+/* Google Books*/
+.googleRed {
+	font-family: Futura;
+	color: #d62d20;
+}
+
+.googleBlue {
+	font-family: Futura;
+	color: #0057e7;
+}
+
+.googleGreen {
+	font-family: Futura;
+	color: #008744;
+}
+
+.googleYellow {
+	font-family: Futura;
+	color: #ffa700;
+}
+
+.books {
+	font-size: 75%;
+	font-family: Verdana;
+	color:#003BB3;
+}
+
+/* iTunes */
+
+.itunesLogo {
+	color: #6AAAEB;
+	font-family: sans-serif;
 }
