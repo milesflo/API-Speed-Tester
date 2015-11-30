@@ -38,12 +38,12 @@ function logging (apiObj) {
 			$('#imdbAvgTime').html(apiObj.averageDelayTime);
 			$('#imdbSuccessCount').html(imdb.successfulHits);
 			$('#imdbFailedCount').html(apiObj.failedHits);
-			$('#imdbSuccessRate').html(apiObj.successfulHits / apiObj.failedHits + "%");
+			$('#imdbSuccessRate').html((apiObj.successfulHits / 100)*100 + "%");
 			// Rate limiting message
 			if (apiObj.failedHits !== 0 && apiObj.failedHits !== 100) {
 				$('#imdbRateLimitBool').html("Some");
 			}  else if (apiObj.failedHits === 100) {
-				$('#imdbRateLimitBool').html("You've been banned from this server.");
+				$('#imdbRateLimitBool').html("You've been banned.");
 			} else {
 				$('#imdbRateLimitBool').html("No")
 			}
@@ -52,12 +52,12 @@ function logging (apiObj) {
 			$('#googleBooksAvgTime').html(apiObj.averageDelayTime);
 			$('#googleBooksSuccessCount').html(apiObj.successfulHits);
 			$('#googleBooksFailedCount').html(apiObj.failedHits);
-			$('#googleBooksSuccessRate').html(apiObj.successfulHits / apiObj.failedHits + "%");
+			$('#googleBooksSuccessRate').html((apiObj.successfulHits / 100)*100 + "%");
 			// Rate limiting message
 			if (apiObj.failedHits !== 0 && apiObj.failedHits !== 100) {
 				$('#googleBooksRateLimitBool').html("Some");
 			}  else if (apiObj.failedHits === 100) {
-				$('#googleBooksRateLimitBool').html("You've been banned from this server.");
+				$('#googleBooksRateLimitBool').html("You've been banned.");
 			} else {
 				$('#googleBooksRateLimitBool').html("No")
 			}
@@ -65,12 +65,12 @@ function logging (apiObj) {
 			$('#itunesAvgTime').html(apiObj.averageDelayTime);
 			$('#itunesSuccessCount').html(apiObj.successfulHits);
 			$('#itunesFailedCount').html(apiObj.failedHits);
-			$('#itunesSuccessRate').html(apiObj.successfulHits / apiObj.failedHits + "%");
+			$('#itunesSuccessRate').html((apiObj.successfulHits / 100)*100 + "%");
 			// Rate limit message
 			if (apiObj.failedHits !== 0 && apiObj.failedHits !== 100) {
 				$('#itunesRateLimitBool').html("Some");
 			}  else if (apiObj.failedHits === 100) {
-				$('#itunesRateLimitBool').html("You've been banned from this server.");
+				$('#itunesRateLimitBool').html("You've been banned.");
 			} else {
 				$('#itunesRateLimitBool').html("No")
 			}
