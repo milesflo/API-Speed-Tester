@@ -1,0 +1,23 @@
+* {
+	font-family: Helvetica;
+	color: #666;
+}
+
+
+
+
+
+#imdbData {
+	visibility: hidden;
+	width: 100%;
+}
+
+#googleBooksData {
+	visibility: hidden;
+	width: 100%;
+}
+
+#itunesData {
+	visibility: hidden;
+	width: 100%;
+}
