@@ -49,7 +49,7 @@ function logging (apiObj) {
 			}
 
 		}  else if (apiObj.metaname === "googleBooks") {
-			$('#googleBooksAvgTime').html(apiObj.averageDelayTime);
+			$('#googleBooksAvgTime').html(apiObj.averageDelayTime + " ms");
 			$('#googleBooksSuccessCount').html(apiObj.successfulHits);
 			$('#googleBooksFailedCount').html(apiObj.failedHits);
 			$('#googleBooksSuccessRate').html(((apiObj.successfulHits / burstCount)*100).toFixed(0) + "%");
@@ -67,7 +67,7 @@ function logging (apiObj) {
 			if (apiObj.averageDelayTime === NaN) {
 				$('#itunesAvgTime').html("None");
 			}  else {
-				$('#itunesAvgTime').html(apiObj.averageDelayTime);
+				$('#itunesAvgTime').html(apiObj.averageDelayTime + " ms");
 			}
 			$('#itunesSuccessCount').html(apiObj.successfulHits);
 			$('#itunesFailedCount').html(apiObj.failedHits);
