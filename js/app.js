@@ -7,6 +7,7 @@
 	})
 })();
 
+/* This controls the amount of requests sent each press of "connect" */
 var burstCount = 150;
 
 function generateCallback(iteration, apiObj) {
@@ -33,29 +34,40 @@ function generateCallback(iteration, apiObj) {
 
 function logging (apiObj) {
 	if (apiObj.metaname === "imdb") {
+		if (isNaN(apiObj.averageDelayTime) === true) {
+			$('#imdbAvgTime').html("None");
+		}  else {
 			$('#imdbAvgTime').html(apiObj.averageDelayTime + " ms");
-			$('#imdbSuccessCount').html(imdb.successfulHits);
-			$('#imdbFailedCount').html(apiObj.failedHits);
-			$('#imdbSuccessRate').html(((apiObj.successfulHits / burstCount)*100).toFixed(0) + "%");
-			// Rate limiting message
-			if (apiObj.failedHits !== 0 && apiObj.failedHits !== burstCount) {
-				$('#imdbRateLimitBool').html("Some");
-			}  else if (apiObj.failedHits === burstCount) {
-				$('#imdbRateLimitBool').html("You've been blocked.");
-				$('#imdbRateLimitBool').css("color" , "red");
-			} else {
-				$('#imdbRateLimitBool').html("None");
-				$('#imdbRateLimitBool').css("color", "green");
-			}
+		}
+		$('#imdbSuccessCount').html(imdb.successfulHits);
+		$('#imdbFailedCount').html(apiObj.failedHits);
+		$('#imdbSuccessRate').html(((apiObj.successfulHits / burstCount)*100).toFixed(0) + "%");
+		// Rate limiting message
+		if (apiObj.failedHits !== 0 && apiObj.failedHits !== burstCount) {
+			$('#imdbRateLimitBool').html("Some");
+			$('#imdbRateLimitBool').css("color" , "black");
+		}  else if (apiObj.failedHits === burstCount) {
+			$('#imdbRateLimitBool').html("You've been blocked.");
+			$('#imdbRateLimitBool').css("color" , "red");
+		} else {
+			$('#imdbRateLimitBool').html("None");
+			$('#imdbRateLimitBool').css("color", "green");
+		}
 
+		
 		}  else if (apiObj.metaname === "googleBooks") {
-			$('#googleBooksAvgTime').html(apiObj.averageDelayTime + " ms");
+			if (isNaN(apiObj.averageDelayTime) === true) {
+				$('#googleBooksAvgTime').html("None");
+			}  else {
+				$('#googleBooksAvgTime').html(apiObj.averageDelayTime + " ms");
+			}
 			$('#googleBooksSuccessCount').html(apiObj.successfulHits);
 			$('#googleBooksFailedCount').html(apiObj.failedHits);
 			$('#googleBooksSuccessRate').html(((apiObj.successfulHits / burstCount)*100).toFixed(0) + "%");
 			// Rate limiting message
 			if (apiObj.failedHits !== 0 && apiObj.failedHits !== burstCount) {
 				$('#googleBooksRateLimitBool').html("Some");
+				$('#googleBooksRateLimitBool').css("color" , "black");
 			}  else if (apiObj.failedHits === burstCount) {
 				$('#googleBooksRateLimitBool').html("You've been blocked.");
 				$('#googleBooksRateLimitBool').css("color" , "red");
@@ -63,8 +75,10 @@ function logging (apiObj) {
 				$('#googleBooksRateLimitBool').html("None");
 				$('#googleBooksRateLimitBool').css("color", "green");
 			}
+		
+
 		}  else if (apiObj.metaname === "itunes") {
-			if (apiObj.averageDelayTime === NaN) {
+			if (isNaN(apiObj.averageDelayTime) === true) {
 				$('#itunesAvgTime').html("None");
 			}  else {
 				$('#itunesAvgTime').html(apiObj.averageDelayTime + " ms");
@@ -75,6 +89,7 @@ function logging (apiObj) {
 			// Rate limit message
 			if (apiObj.failedHits !== 0 && apiObj.failedHits !== burstCount) {
 				$('#itunesRateLimitBool').html("Some");
+				$('#itunesRateLimitBool').css("color" , "black");
 			}  else if (apiObj.failedHits === burstCount) {
 				$('#itunesRateLimitBool').html("You've been blocked.");
 				$('#itunesRateLimitBool').css("color" , "red");
