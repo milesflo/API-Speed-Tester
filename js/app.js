@@ -111,8 +111,12 @@ var calculateAverage = function(apiObj) {
 //IMDB AJAX. Connected to a button.
 function imdbConnect(){
 	$('#imdbButton').on("click", function(){
-		$('#imdbData').show();
+		$('#imdbButton').prop('disabled', true);
+		setTimeout(function(){
+			$('#imdbButton').prop('disabled', false)
+		}, 25*burstCount);
 		imdb.delayTimesCollection = [];
+		$('#imdbData').show();
 		imdb.successfulHits = 0;
 		imdb.failedHits = 0;
 		for (var i = 0; i < burstCount; i++) {
@@ -124,6 +128,10 @@ function imdbConnect(){
 //Google books AJAX. Connected to a button
 function googleBooksConnect(){
 	$('#googlebooksButton').on("click", function(){
+		$('#googlebooksButton').prop('disabled', true);
+		setTimeout(function(){
+			$('#googlebooksButton').prop('disabled', false)
+		}, 25*burstCount);
 		$('#googleBooksData').show();
 		googleBooks.delayTimesCollection = [];
 		googleBooks.successfulHits = 0;
@@ -137,6 +145,10 @@ function googleBooksConnect(){
 //Itunes AJAX. Connected to button
 function itunesConnect(){
 	$('#itunesButton').on("click", function(){
+		$('#itunesButton').prop('disabled', true);
+		setTimeout(function(){
+			$('#itunesButton').prop('disabled', false)
+		}, 25*burstCount);
 		$('#itunesData').show();
 		itunes.delayTimesCollection = [];
 		itunes.successfulHits = 0;
